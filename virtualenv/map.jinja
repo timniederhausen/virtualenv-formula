@@ -1,0 +1,16 @@
+{% import_yaml 'virtualenv/defaults.yaml' as defaults %}
+{% import_yaml 'virtualenv/osmap.yaml' as osmap %}
+
+{# get the settings for the os_family grain #}
+{% set osfam = salt['grains.filter_by'](osmap) or {} %}
+
+{# merge the os family/codename specific data over the defaults #}
+{% do defaults.virtualenv.update(osfam) %}
+
+{# merge the pillar:lookup dict into the defaults/os specific dict #}
+{% set lookup = salt['pillar.get']('virtualenv:lookup',
+                                   default=defaults.virtualenv,
+                                   merge=True) %}
+
+{# merge the actual virtualenv pillar into the above combined dict #}
+{% set virtualenv = salt['pillar.get']('virtualenv', default=lookup, merge=True) %}

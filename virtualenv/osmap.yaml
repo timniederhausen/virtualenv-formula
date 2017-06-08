@@ -1,0 +1,12 @@
+Debian:
+  package: python-virtualenv
+
+RedHat:
+  package: python-virtualenv
+
+Gentoo:
+  package: dev-python/virtualenv
+
+FreeBSD:
+  # TODO: python 3?
+  package: py27-virtualenv
