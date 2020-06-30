@@ -9,4 +9,4 @@ Gentoo:
 
 FreeBSD:
   # TODO: python 3?
-  package: py27-virtualenv
+  package: py37-virtualenv
